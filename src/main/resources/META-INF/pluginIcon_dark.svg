@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="pluginIcon.svg"
+   sodipodi:docname="pluginIcon_dark.svg"
    inkscape:export-filename="logana.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -50,7 +50,7 @@
        x="0.09622094"
        y="0.13760863" />
     <rect
-       style="fill:#dbdbdb;fill-opacity:1"
+       style="fill:#545454;fill-opacity:1"
        id="rect997"
        width="116.71785"
        height="116.43561"
@@ -64,7 +64,7 @@
        rx="30.357216"
        ry="29.517467" />
     <ellipse
-       style="fill:#dbdbdb;fill-opacity:1;stroke-width:0.742296"
+       style="fill:#545454;fill-opacity:1;stroke-width:0.742296"
        id="path111-3"
        cx="85.05365"
        cy="54.418694"
