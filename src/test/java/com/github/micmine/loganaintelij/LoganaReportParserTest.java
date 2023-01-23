@@ -36,5 +36,23 @@ public class LoganaReportParserTest {
                         .build()
         ));
     }
+    @Test
+    public void testParser2() {
+        List<String> log = List.of(
+                "/home/michael/test/src/main/java/Generator.java:118:51|';' expected",
+                "",
+                ""
+        );
 
+        List<LoganaMessage> result = parser.parse(log);
+
+        assertEquals(result, List.of(
+                LoganaMessage.builder()
+                        .path(Path.of("/home/michael/test/src/main/java/Generator.java"))
+                        .text("';' expected")
+                        .row(118)
+                        .col(51)
+                        .build()
+        ));
+    }
 }

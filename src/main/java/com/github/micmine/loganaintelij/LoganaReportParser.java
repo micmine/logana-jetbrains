@@ -31,6 +31,9 @@ public class LoganaReportParser {
     protected List<LoganaMessage> parse(List<String> lines) {
         List<LoganaMessage> output = new ArrayList<>();
         for (String line : lines) {
+            if (line.isEmpty()) {
+                continue;
+            }
 
             String dive = "";
             if (line.charAt(1) == ':') {
