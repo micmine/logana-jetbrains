@@ -15,6 +15,7 @@ public class ErrorController {
 
 
     private static ErrorController instance;
+
     public static ErrorController getInstance() {
         if (instance == null) {
             instance = new ErrorController();
@@ -32,18 +33,19 @@ public class ErrorController {
         ProblemsCollector problemsCollector = ProblemsCollector.getInstance(project);
 
         this.oldMessages = this.messages;
-        this.messages = newMessages.stream().map(message -> ProblemConverter.getInstance().toProblem(project, message)).collect(Collectors.toList());
+        this.messages = newMessages.stream()
+                .map(message -> ProblemConverter.getInstance().toProblem(project, message))
+                .collect(Collectors.toList());
 
-        for (Problem problem: this.oldMessages) {
+        for (Problem problem : this.oldMessages) {
             problemsCollector.problemDisappeared(problem);
         }
-        for (Problem problem: this.messages) {
+        for (Problem problem : this.messages) {
             problemsCollector.problemAppeared(problem);
         }
 
 
     }
-
 
 
 }

@@ -2,13 +2,11 @@ package com.github.micmine.loganaintelij.controller;
 
 import com.github.micmine.loganaintelij.model.LoganaMessage;
 import com.intellij.analysis.problemsView.FileProblem;
-import com.intellij.analysis.problemsView.Problem;
 import com.intellij.analysis.problemsView.ProblemsProvider;
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.ui.content.AlertIcon;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,9 +17,11 @@ public class ProblemConverter {
 
     private HashMap<Project, ProblemsProvider> problemsProviderHashMap = new HashMap<>();
 
-    private ProblemConverter(){}
+    private ProblemConverter() {
+    }
 
     private static ProblemConverter instance;
+
     public static ProblemConverter getInstance() {
         if (instance == null) {
             instance = new ProblemConverter();
@@ -52,7 +52,7 @@ public class ProblemConverter {
         return provider;
     }
 
-    public FileProblem toProblem(Project project,LoganaMessage message) {
+    public FileProblem toProblem(Project project, LoganaMessage message) {
         FileProblem problem = new FileProblem() {
             @Override
             public int getLine() {

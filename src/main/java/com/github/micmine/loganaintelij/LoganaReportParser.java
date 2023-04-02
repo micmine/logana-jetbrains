@@ -1,6 +1,5 @@
 package com.github.micmine.loganaintelij;
 
-
 import com.github.micmine.loganaintelij.model.LoganaMessage;
 
 import java.io.IOException;
@@ -8,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class LoganaReportParser {
 
@@ -37,7 +35,7 @@ public class LoganaReportParser {
 
             String dive = "";
             if (line.charAt(1) == ':') {
-                dive = line.substring(0,2);
+                dive = line.substring(0, 2);
                 line = line.substring(2);
             }
 
