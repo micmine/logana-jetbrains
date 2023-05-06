@@ -7,6 +7,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.roots.FileIndexFacade;
 import com.intellij.openapi.vfs.VirtualFile;
 
@@ -22,9 +23,7 @@ public class LoadLoganaReportAction extends AnAction {
         Project project = e.getProject();
         VirtualFile selected = FileEditorManager.getInstance(project).getSelectedEditor().getFile();
         Module module = FileIndexFacade.getInstance(project).getModuleForFile(selected);
-
-        // .iml file to project directory
-        Path projectDirectory = Path.of(module.getModuleFilePath()).getParent();
+        Path projectDirectory = Path.of(ProjectUtil.guessModuleDir(module).getPath());
 
         List<LoganaMessage> messages = parser.parseReportFile(projectDirectory);
 
