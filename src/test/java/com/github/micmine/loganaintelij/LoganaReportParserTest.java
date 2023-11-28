@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.nio.file.Path;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class LoganaReportParserTest {
 
@@ -22,18 +22,16 @@ public class LoganaReportParserTest {
         List<LoganaMessage> result = parser.parse(log);
 
         assertEquals(result, List.of(
-                LoganaMessage.builder()
-                        .path(Path.of("/home/michael/Documents/rust/logana/src/main.rs"))
-                        .text("type annotations needed")
-                        .row(16)
-                        .col(5)
-                        .build(),
-                LoganaMessage.builder()
-                        .path(Path.of("C:\\home\\michael\\Documents\\rust\\logana\\src\\main.rs"))
-                        .text("type annotations needed")
-                        .row(16)
-                        .col(5)
-                        .build()
+                new LoganaMessage(
+                        "type annotations needed",
+                        Path.of("/home/michael/Documents/rust/logana/src/main.rs"),
+                        16,
+                        5 ),
+                new LoganaMessage(
+                        "type annotations needed",
+                        Path.of("C:\\home\\michael\\Documents\\rust\\logana\\src\\main.rs"),
+                        16,
+                        5)
         ));
     }
     @Test
@@ -47,12 +45,11 @@ public class LoganaReportParserTest {
         List<LoganaMessage> result = parser.parse(log);
 
         assertEquals(result, List.of(
-                LoganaMessage.builder()
-                        .path(Path.of("/home/michael/test/src/main/java/Generator.java"))
-                        .text("';' expected")
-                        .row(118)
-                        .col(51)
-                        .build()
+                new LoganaMessage(
+                        "';' expected",
+                        Path.of("/home/michael/test/src/main/java/Generator.java"),
+                        118,
+                        51)
         ));
     }
 }

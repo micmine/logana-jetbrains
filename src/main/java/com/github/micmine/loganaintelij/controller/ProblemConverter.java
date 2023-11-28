@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 public class ProblemConverter {
 
-    private HashMap<Project, ProblemsProvider> problemsProviderHashMap = new HashMap<>();
+    private final HashMap<Project, ProblemsProvider> problemsProviderHashMap = new HashMap<>();
 
     private ProblemConverter() {
     }
@@ -46,28 +46,28 @@ public class ProblemConverter {
                     return project;
                 }
             };
-
+            this.problemsProviderHashMap.put(project, problemsProvider);
             return problemsProvider;
         }
         return provider;
     }
 
     public FileProblem toProblem(Project project, LoganaMessage message) {
-        FileProblem problem = new FileProblem() {
+        return new FileProblem() {
             @Override
             public int getLine() {
-                return message.getRow();
+                return message.row();
             }
 
             @NotNull
             @Override
             public VirtualFile getFile() {
-                return LocalFileSystem.getInstance().findFileByNioFile(message.getPath());
+                return LocalFileSystem.getInstance().findFileByNioFile(message.path());
             }
 
             @Override
             public int getColumn() {
-                return message.getCol();
+                return message.col();
             }
 
             @NotNull
@@ -79,7 +79,7 @@ public class ProblemConverter {
             @NotNull
             @Override
             public String getText() {
-                return message.getText();
+                return message.text();
             }
 
             @Nullable
@@ -99,7 +99,5 @@ public class ProblemConverter {
                 return AllIcons.General.Error;
             }
         };
-
-        return problem;
     }
 }
